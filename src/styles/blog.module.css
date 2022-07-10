@@ -44,42 +44,32 @@
   margin: 0 auto 40px;
 }
 .post :global(h3) {
+  font-size: 2.0rem;
   margin: 0;
   color: var(--fg);
 }
 .post :global(h4) {
-  margin: 1.8rem 0 0.8rem;
+  margin: 2.2rem 0 2.4rem;
   color: var(--fg);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.1em;
+  line-height: 1.5;
 }
-.post :global(h4):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  content: '▼';
-  padding-left: 0.2rem;
-}
+
 .post :global(h5) {
-  margin: 1.8rem 0 0.8rem;
+  margin: 2.2rem 0 2.4rem;
   color: var(--fg);
-  font-size: 1.1rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
 }
-.post :global(h5):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  content: '▼';
-  padding-left: 0.2rem;
-}
+
 .post :global(h6) {
   margin: 1.8rem 0 0.8rem;
   color: var(--fg);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
-.post :global(h6):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  content: '▼';
-  padding-left: 0.2rem;
-}
+
 .post :global(p) {
   margin: 0.3rem 0;
   font-size: 1rem;
@@ -93,9 +83,10 @@
 .post :global(blockquote) {
   margin: 0.6rem 0;
   padding: 0 0.9rem;
-  border-left: 3px solid var(--fg);
+  border-left: 3px solid #9dacb7;
   font-size: 1rem;
   line-height: 1.8rem;
+  color: #505c64;
 }
 .post table {
   margin: 1rem 0;

@@ -281,10 +281,10 @@ pre :global(code) {
 
 hr {
   display: block;
-  height: 1px;
+  height: 2px;
   border: 0;
-  margin: 0.3rem 0;
-  background-color: #333;
+  margin: 2.5rem 0;
+  background-color: #5c93bb2b;
 }
 
 code {
