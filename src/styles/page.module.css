@@ -12,9 +12,15 @@
 }
 
 .container h2 {
-  margin: 0 0 14px;
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.8em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.1em;
+  font-weight: bold;
+  line-height: 1.5;
+  font-feature-settings: "palt";
+  margin-top: 2.2em;
+  margin-bottom: 2.4rem;
+  cursor: pointer;
 }
 
 .container p {

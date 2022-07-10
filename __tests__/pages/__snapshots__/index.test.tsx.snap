@@ -7,25 +7,51 @@ exports[`RenderPage renders the page unchanged 1`] = `
   >
     <div>
       <h2>
-        Welcome!
+        About
       </h2>
       <p>
-        Your easy-notion-blog deployed successfully!
+        easy-notion-blogのこと、プログラミングのことを書いています。
+      </p>
+      <h2>
+        Profile
+      </h2>
+      <p>
+        プログラミング勉強中の機械系エンジニアです。
       </p>
       <p>
-        Have fun!
-      </p>
-      <p>
-        easy-notion-blog powered by
-         
+        詳しいプロフィールはTwitter(
         <a
-          href="https://github.com/otoyo/easy-notion-blog"
+          href="https://twitter.com/ChabesuB"
           rel="noopener"
           target="_blank"
         >
-          otoyo/easy-notion-blog
+          @ChabesuB
         </a>
+        )に載せています。
       </p>
+      <h2>
+        Link
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="https://zatsugaku-engineer.com/"
+            rel="noopener"
+            target="_blank"
+          >
+            雑学エンジニアブログ
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://note.com/chabesu_blog"
+            rel="noopener"
+            target="_blank"
+          >
+            note
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
