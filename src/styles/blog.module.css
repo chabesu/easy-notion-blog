@@ -70,7 +70,7 @@
 }
 
 .post :global(p) {
-  margin: 0.3rem 0;
+  margin: 0 0 1.5rem 0;
   font-size: 1rem;
   min-height: 1.8rem;
 }
