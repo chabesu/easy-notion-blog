@@ -36,7 +36,7 @@ const DocumentHead = ({ title = '', description = '', urlOgImage = '' }) => {
           content={new URL('/default.png', NEXT_PUBLIC_URL).toString()}
         />
       ) : null}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       {urlOgImage ? (
         <meta name="twitter:image" content={urlOgImage} />
       ) : NEXT_PUBLIC_URL ? (
