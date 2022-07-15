@@ -11,6 +11,15 @@
 .mainContent {
   width: 60%;
 }
+.mainContent h2 {
+  font-size: 1.8rem;
+}
+.mainContent h2::before {
+  content:"「";
+}
+.mainContent h2::after {
+  content:"」の記事一覧";
+}
 @media (max-width: 600px) {
   .mainContent {
     width: 100%;
