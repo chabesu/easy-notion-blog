@@ -9,6 +9,7 @@ import {
   PostTags,
   PostTitle,
   ReadMoreLink,
+  PostThumbnail,
 } from '../../components/blog-parts'
 import styles from '../../styles/blog.module.css'
 import {
@@ -17,6 +18,7 @@ import {
   getRankedPosts,
   getAllTags,
 } from '../../lib/notion/client'
+import * as imageCache from '../../lib/notion/image-cache'
 
 export async function getStaticProps() {
   const [posts, firstPost, rankedPosts, tags] = await Promise.all([
@@ -25,6 +27,8 @@ export async function getStaticProps() {
     getRankedPosts(),
     getAllTags(),
   ])
+
+  posts.forEach((p) => p.OGImage && imageCache.store(p.PageId, p.OGImage))
 
   return {
     props: {
@@ -50,14 +54,21 @@ const RenderPosts = ({
       <div className={styles.mainContent}>
         <NoContents contents={posts} />
 
-        {posts.map(post => {
+        {posts.map((post) => {
           return (
             <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+              <div className={styles.postContair}>
+                <div className={styles.thumbnail}>
+                  <PostThumbnail post={post} />
+                </div>
+                <div className={styles.postContent}>
+                  <PostDate post={post} />
+                  <PostTags post={post} />
+                  <PostTitle post={post} />
+                  <PostExcerpt post={post} />
+                  <ReadMoreLink post={post} />
+                </div>
+              </div>
             </div>
           )
         })}

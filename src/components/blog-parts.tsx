@@ -18,6 +18,19 @@ export const PostDate = ({ post }) => (
   </div>
 )
 
+export const PostThumbnail = ({ post }) => (
+  <div className={styles.thumbnail}>
+    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
+      <img
+        src={`/notion_images/${post.PageId}.png`}
+        width={300}
+        height={160}
+        alt="thumbnail"
+      />
+    </Link>
+  </div>
+)
+
 export const PostTitle = ({ post, enableLink = true }) => {
   const postTitle = post.Title ? post.Title : ''
 

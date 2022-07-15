@@ -30,9 +30,7 @@
   text-align: center;
 }
 .mainContent footer {
-  border-top: 1px dashed #888;
   margin: 0 auto;
-  padding: 40px 0 0;
 }
 @media (max-width: 600px) {
   .mainContent footer {
@@ -50,10 +48,34 @@
 }
 
 .post {
-  margin: 0 auto 40px;
+  margin: 0 auto 100px;
 }
+.postContair{
+  display: flex;
+  flex-direction: row;
+  gap: 4vh;
+  padding-bottom: 100px;;
+  border-bottom: 1px solid #ddd;
+}
+.thumbnail{
+  width:300px;
+  cursor: pointer;
+}
+.postContent{
+  width:100%;
+}
+@media (max-width: 1280px) {
+  .postContair {
+    flex-direction: column;
+  }
+  .thumbnail{
+    width:100%;
+    text-align: center;
+  }
+}
+
 .post :global(h3) {
-  margin: 0;
+  margin: 1rem 0;
   color: var(--fg);
 }
 .post :global(h4) {

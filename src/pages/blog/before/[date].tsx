@@ -14,8 +14,10 @@ import {
   PostTitle,
   PostsNotFound,
   ReadMoreLink,
+  PostThumbnail,
 } from '../../../components/blog-parts'
 import styles from '../../../styles/blog.module.css'
+import * as imageCache from '../../../lib/notion/image-cache'
 
 import { getBeforeLink } from '../../../lib/blog-helpers'
 import {
@@ -37,6 +39,8 @@ export async function getStaticProps({ params: { date } }) {
     getRankedPosts(),
     getAllTags(),
   ])
+
+  posts.forEach((p) => p.OGImage && imageCache.store(p.PageId, p.OGImage))
 
   return {
     props: {
@@ -91,14 +95,21 @@ const RenderPostsBeforeDate = ({
 
         <NoContents contents={posts} />
 
-        {posts.map(post => {
+        {posts.map((post) => {
           return (
             <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+              <div className={styles.postContair}>
+                <div className={styles.thumbnail}>
+                  <PostThumbnail post={post} />
+                </div>
+                <div className={styles.postContent}>
+                  <PostDate post={post} />
+                  <PostTags post={post} />
+                  <PostTitle post={post} />
+                  <PostExcerpt post={post} />
+                  <ReadMoreLink post={post} />
+                </div>
+              </div>
             </div>
           )
         })}
