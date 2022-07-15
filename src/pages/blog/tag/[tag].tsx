@@ -13,6 +13,7 @@ import {
   PostTitle,
   PostsNotFound,
   ReadMoreLink,
+  PostThumbnail,
 } from '../../../components/blog-parts'
 import styles from '../../../styles/blog.module.css'
 import { getTagLink } from '../../../lib/blog-helpers'
@@ -24,6 +25,7 @@ import {
   getFirstPostByTag,
   getAllTags,
 } from '../../../lib/notion/client'
+import * as imageCache from '../../../lib/notion/image-cache'
 
 export async function getStaticProps({ params: { tag } }) {
   const posts = await getPostsByTag(tag, NUMBER_OF_POSTS_PER_PAGE)
@@ -44,6 +46,8 @@ export async function getStaticProps({ params: { tag } }) {
     getPosts(5),
     getAllTags(),
   ])
+
+  posts.forEach((p) => p.OGImage && imageCache.store(p.PageId, p.OGImage))
 
   return {
     props: {
@@ -99,14 +103,21 @@ const RenderPostsByTags = ({
 
         <NoContents contents={posts} />
 
-        {posts.map(post => {
+        {posts.map((post) => {
           return (
             <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+              <div className={styles.postContair}>
+                <div className={styles.thumbnail}>
+                  <PostThumbnail post={post} />
+                </div>
+                <div className={styles.postContent}>
+                  <PostDate post={post} />
+                  <PostTags post={post} />
+                  <PostTitle post={post} />
+                  <PostExcerpt post={post} />
+                  <ReadMoreLink post={post} />
+                </div>
+              </div>
             </div>
           )
         })}
