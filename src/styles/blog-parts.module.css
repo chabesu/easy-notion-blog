@@ -12,6 +12,7 @@
   padding: 0.2rem;
   margin: 0 0.5rem 0rem 0;
   color:#888;
+  border-radius: 6px;
 }
 
 .postTags a:hover {
@@ -58,6 +59,7 @@
   font-size: 0.85rem;
   text-align: center;
   line-height: 3rem;
+  border-radius: 6px;
 }
 .readMoreLink a:hover {
   opacity: 0.6;
@@ -131,6 +133,7 @@
   padding: 0.4em;
   margin: 0 0.5em 0em 0;
   color:#888;
+  border-radius: 6px;
 }
 .blogTagLink a:hover {
   border: 1px solid #a8abb1;
