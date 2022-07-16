@@ -59,7 +59,16 @@
 }
 .thumbnail{
   width:300px;
+  overflow: hidden;
+}
+.thumbnail img {
   cursor: pointer;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
+  transition: 0.3s;
+}
+.thumbnail img:hover{
+  opacity: 0.6;
+  transform: scale(1.3);
 }
 .postContent{
   width:100%;

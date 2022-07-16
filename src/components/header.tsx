@@ -15,6 +15,7 @@ const Header = () => {
   const navItems: NavItem[] = [
     { label: 'Home', path: '/' },
     { label: 'Blog', path: '/blog' },
+    { label: 'Portfolio', path: 'https://notion-portfolio-site.vercel.app/' },
   ]
 
   return (
