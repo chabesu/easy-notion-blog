@@ -27,3 +27,10 @@
   margin: 0.3rem auto;
   line-height: 2rem;
 }
+
+.container .contact {
+  margin-top: 50px;
+  width: 100%;
+  height: 730px;
+  border:none;
+}

@@ -16,7 +16,7 @@ const Header = () => {
     { label: 'Home', path: '/' },
     { label: 'Blog', path: '/blog' },
     { label: 'Portfolio', path: 'https://notion-portfolio-site.vercel.app/' },
-    { label: 'Contact', path: 'https://www.noway-form.com/f/41b1d91e-7601-40a7-86df-b2c7208f4666' },
+    { label: 'Contact', path: '/contact' },
   ]
 
   return (
