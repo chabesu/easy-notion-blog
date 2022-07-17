@@ -118,7 +118,7 @@
 .linkPreview {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 2rem auto;
   font-size: 0.9rem;
 }
 @media (max-width: 1024px) {
