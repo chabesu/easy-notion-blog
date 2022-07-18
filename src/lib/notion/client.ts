@@ -642,7 +642,7 @@ function _buildPost(data) {
     OGImage:
       prop.OGImage.files.length > 0 ? prop.OGImage.files[0].file.url : null,
     Rank: prop.Rank.number,
-    Like: prop.Like.number,
+    Like: prop.Like != undefined ? prop.Like.number : 0,
   }
 
   return post
