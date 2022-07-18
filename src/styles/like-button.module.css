@@ -1,10 +1,16 @@
 .likeButton {
   background-color: transparent;
   border: none;
-  padding: 0;
   font: inherit;
-  line-height: 1.8rem;
-  font-size: 0.8rem;
-  color: inherit;
+  line-height: 1rem;
+  font-size: 1rem;
   cursor: pointer;
+  background-color: rgb(231, 76, 60);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.likeButton:active {
+  opacity: 0.6;
 }

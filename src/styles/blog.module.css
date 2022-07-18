@@ -123,7 +123,7 @@
   display: inline-block;
   filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
   border-radius: 6px;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 .post :global(blockquote) {
   margin: 0.6rem 0;
@@ -149,4 +149,8 @@
 .post footer {
   padding: 0;
   border: 0;
+}
+
+.help {
+  color:#9dacb7;
 }

@@ -16,6 +16,7 @@ import {
   PostsNotFound,
 } from '../../components/blog-parts'
 import SocialButtons from '../../components/social-buttons'
+import LikeButton from '../../components/like-button'
 import styles from '../../styles/blog.module.css'
 import { getBlogLink } from '../../lib/blog-helpers'
 import {
@@ -147,6 +148,7 @@ const RenderPost = ({
                 id={post.Slug}
               />
             )}
+            <LikeButton slug={post.Slug} post={post.Like}/><span className={styles.help}> ←1分ほど経過して再読み込みするとクリックしたいいね数が反映されます。修正予定。</span>
           </footer>
         </div>
       </div>
