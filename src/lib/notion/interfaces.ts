@@ -31,6 +31,7 @@ export interface Block {
   Bookmark?: Bookmark
   LinkPreview?: LinkPreview
   Table?: Table
+  ColumnList?: ColumnList
 }
 
 export interface Paragraph {
@@ -138,6 +139,17 @@ export interface TableRow {
 
 export interface TableCell {
   RichTexts: RichText[]
+}
+
+export interface ColumnList {
+  Columns: Column[]
+}
+
+export interface Column {
+  Id: string
+  Type: string
+  HasChildren: boolean
+  Children: Block[]
 }
 
 export interface List {
