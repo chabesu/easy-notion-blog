@@ -109,6 +109,7 @@
 .callout div:first-child {
   margin-right: 0.7rem;
 }
+
 .table {
   overflow-x: auto;
 }
@@ -133,11 +134,9 @@
   overflow: hidden;
   width: 100%;
   max-width: 100%;
-  margin: 20px auto;
   font-size: 0.9rem;
 }
 .bookmark > a {
-  margin: 4px 0;
   width: 100%;
   box-sizing: border-box;
   text-decoration: none;
