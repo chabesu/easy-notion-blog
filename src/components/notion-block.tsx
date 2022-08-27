@@ -1,5 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import * as interfaces from '../lib/notion/interfaces'
 
 const Code = dynamic(() => import('./notion-blocks/code'))
 const Embed = dynamic(() => import('./notion-blocks/embed'))
