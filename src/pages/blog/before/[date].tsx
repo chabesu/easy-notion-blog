@@ -86,23 +86,30 @@ const RenderPostsBeforeDate = ({
 
   return (
     <div className={styles.container}>
-      <DocumentHead description={`Post before ${date.split('T')[0]}`} />
+      <DocumentHead description={`Post before ${date}`} />
 
       <div className={styles.mainContent}>
         <header>
-          <h2>Posts before {date.split('T')[0]}</h2>
+          <h2>Posts before {date}</h2>
         </header>
 
         <NoContents contents={posts} />
 
-        {posts.map(post => {
+        {posts.map((post) => {
           return (
             <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+              <div className={styles.postContair}>
+                <div className={styles.thumbnail}>
+                  <PostThumbnail post={post} />
+                </div>
+                <div className={styles.postContent}>
+                  <PostDate post={post} />
+                  <PostTags post={post} />
+                  <PostTitle post={post} />
+                  <PostExcerpt post={post} />
+                  <ReadMoreLink post={post} />
+                </div>
+              </div>
             </div>
           )
         })}
