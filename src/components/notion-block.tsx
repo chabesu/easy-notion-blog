@@ -46,7 +46,7 @@ const RichText = ({ richText }) => {
   return element
 }
 
-const colorClass = color => {
+const colorClass = (color) => {
   switch (color) {
     case 'gray':
       return styles.gray
@@ -90,9 +90,11 @@ const colorClass = color => {
 
 const Paragraph = ({ block }) => (
   <p className={colorClass(block.Paragraph.Color)}>
-    {block.Paragraph.RichTexts.map((richText, i) => (
-      <RichText richText={richText} key={`paragraph-${block.Id}-${i}`} />
-    ))}
+    {block.Paragraph.RichTexts.map(
+      (richText: interfaces.RichText, i: number) => (
+        <RichText richText={richText} key={`paragraph-${block.Id}-${i}`} />
+      )
+    )}
   </p>
 )
 
@@ -102,13 +104,17 @@ const Heading3 = ({ block }) => <Heading heading={block.Heading3} level={3} />
 
 const Heading = ({ heading, level = 1 }) => {
   const tag = `h${level + 3}`
-  const id = heading.RichTexts.map(richText => richText.Text.Content)
+  const id = heading.RichTexts.map(
+    (richText: interfaces.RichText) => richText.Text.Content
+  )
     .join()
     .trim()
   const htag = React.createElement(
     tag,
     { className: colorClass(heading.Color) },
-    heading.RichTexts.map(richText => <RichText richText={richText} key={id} />)
+    heading.RichTexts.map((richText: interfaces.RichText) => (
+      <RichText richText={richText} key={id} />
+    ))
   )
 
   return (
@@ -123,9 +129,7 @@ const ImageBlock = ({ block }) => (
     <div>
       <img
         src={
-          block.Image.External
-            ? block.Image.External.Url
-            : block.Image.File.Url
+          block.Image.External ? block.Image.External.Url : block.Image.File.Url
         }
         alt="画像が読み込まれない場合はページを更新してみてください。"
       />
@@ -140,7 +144,7 @@ const ImageBlock = ({ block }) => (
 
 const Quote = ({ block }) => (
   <blockquote className={colorClass(block.Quote.Color)}>
-    {block.Quote.Text.map((richText, i) => (
+    {block.Quote.Text.map((richText: interfaces.RichText, i: number) => (
       <RichText richText={richText} key={`quote-${block.Id}-${i}`} />
     ))}
   </blockquote>
@@ -154,9 +158,11 @@ const Callout = ({ block }) => {
     <div className={className}>
       <div>{block.Callout.Icon.Emoji}</div>
       <div>
-        {block.Callout.RichTexts.map((richText, i) => (
-          <RichText richText={richText} key={`callout-${block.Id}-${i}`} />
-        ))}
+        {block.Callout.RichTexts.map(
+          (richText: interfaces.RichText, i: number) => (
+            <RichText richText={richText} key={`callout-${block.Id}-${i}`} />
+          )
+        )}
       </div>
     </div>
   )
@@ -181,9 +187,14 @@ const Table = ({ block }) => (
                 return React.createElement(
                   tag,
                   { key: `${tableRow.Id}-${j}-${i}` },
-                  cell.RichTexts.map((richText: interfaces.RichText, k: number) => (
-                    <RichText richText={richText} key={`${tableRow.Id}-${j}-${i}-${k}`} />
-                  ))
+                  cell.RichTexts.map(
+                    (richText: interfaces.RichText, k: number) => (
+                      <RichText
+                        richText={richText}
+                        key={`${tableRow.Id}-${j}-${i}-${k}`}
+                      />
+                    )
+                  )
                 )
               })}
             </tr>
@@ -223,18 +234,20 @@ const List = ({ block }) => {
 
 const BulletedListItems = ({ blocks }) =>
   blocks
-    .filter(b => b.Type === 'bulleted_list_item')
-    .map(listItem => (
+    .filter((b: interfaces.Block) => b.Type === 'bulleted_list_item')
+    .map((listItem: interfaces.Block) => (
       <li
         key={`bulleted-list-item-${listItem.Id}`}
         className={colorClass(listItem.BulletedListItem.Color)}
       >
-        {listItem.BulletedListItem.RichTexts.map((richText, i) => (
-          <RichText
-            richText={richText}
-            key={`bulleted-list-item-${listItem.Id}-${i}`}
-          />
-        ))}
+        {listItem.BulletedListItem.RichTexts.map(
+          (richText: interfaces.RichText, i: number) => (
+            <RichText
+              richText={richText}
+              key={`bulleted-list-item-${listItem.Id}-${i}`}
+            />
+          )
+        )}
         {listItem.HasChildren ? (
           <ul>
             <BulletedListItems blocks={listItem.BulletedListItem.Children} />
@@ -245,18 +258,20 @@ const BulletedListItems = ({ blocks }) =>
 
 const NumberedListItems = ({ blocks, level = 1 }) =>
   blocks
-    .filter(b => b.Type === 'numbered_list_item')
-    .map(listItem => (
+    .filter((b: interfaces.Block) => b.Type === 'numbered_list_item')
+    .map((listItem: interfaces.Block) => (
       <li
         key={`numbered-list-item-${listItem.Id}`}
         className={colorClass(listItem.NumberedListItem.Color)}
       >
-        {listItem.NumberedListItem.RichTexts.map((richText, i) => (
-          <RichText
-            richText={richText}
-            key={`numbered-list-item-${listItem.Id}-${i}`}
-          />
-        ))}
+        {listItem.NumberedListItem.RichTexts.map(
+          (richText: interfaces.RichText, i: number) => (
+            <RichText
+              richText={richText}
+              key={`numbered-list-item-${listItem.Id}-${i}`}
+            />
+          )
+        )}
         {listItem.HasChildren ? (
           level % 3 === 0 ? (
             <ol type="1">
@@ -284,14 +299,18 @@ const NumberedListItems = ({ blocks, level = 1 }) =>
       </li>
     ))
 
-const SyncedBlock = ({ block }) => <NotionBlocks blocks={block.SyncedBlock.Children} />
+const SyncedBlock = ({ block }) => (
+  <NotionBlocks blocks={block.SyncedBlock.Children} />
+)
 
 const Toggle = ({ block }) => (
   <details className={styles.toggle}>
     <summary>
-      {block.Toggle.RichTexts.map((richText: interfaces.RichText, i: number) => (
-        <RichText richText={richText} key={`summary-${block.Id}-${i}`} />
-      ))}
+      {block.Toggle.RichTexts.map(
+        (richText: interfaces.RichText, i: number) => (
+          <RichText richText={richText} key={`summary-${block.Id}-${i}`} />
+        )
+      )}
     </summary>
     <div>
       <NotionBlocks blocks={block.Toggle.Children} />
@@ -341,4 +360,47 @@ const NotionBlock = ({ block }) => {
   return null
 }
 
-export default NotionBlock
+const NotionBlocks = ({ blocks }) => (
+  <>
+    {wrapListItems(blocks).map((block: interfaces.Block, i: number) => (
+      <NotionBlock block={block} key={`block-${i}`} />
+    ))}
+  </>
+)
+
+const wrapListItems = (blocks: Array<interfaces.Block>) =>
+  blocks.reduce((arr, block: interfaces.Block, i: number) => {
+    const isBulletedListItem = block.Type === 'bulleted_list_item'
+    const isNumberedListItem = block.Type === 'numbered_list_item'
+
+    if (!isBulletedListItem && !isNumberedListItem) return arr.concat(block)
+
+    const listType = isBulletedListItem ? 'bulleted_list' : 'numbered_list'
+
+    if (i === 0) {
+      const list: interfaces.List = {
+        Type: listType,
+        ListItems: [block],
+      }
+      return arr.concat(list)
+    }
+
+    const prevList = arr[arr.length - 1]
+
+    if (
+      (isBulletedListItem && prevList.Type !== 'bulleted_list') ||
+      (isNumberedListItem && prevList.Type !== 'numbered_list')
+    ) {
+      const list: interfaces.List = {
+        Type: listType,
+        ListItems: [block],
+      }
+      return arr.concat(list)
+    }
+
+    prevList.ListItems.push(block)
+
+    return arr
+  }, [])
+
+export default NotionBlocks
