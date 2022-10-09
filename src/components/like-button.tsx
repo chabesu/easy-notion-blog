@@ -15,7 +15,7 @@ const LikeButton = (props: Props) => {
     if (!active) {
       axios.put(`/api/like?slug=${props.slug}`, {})
       setActive(true)
-      setLike(like + 1)
+      setLike((like) => like + 1)
     }
   }
 
