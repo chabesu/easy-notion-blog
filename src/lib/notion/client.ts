@@ -59,8 +59,8 @@ export async function getPosts(pageSize = 10) {
   const data = await client.databases.query(params)
 
   return data.results
-    .filter(item => _validPost(item))
-    .map(item => _buildPost(item))
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getAllPosts() {
@@ -96,14 +96,16 @@ export async function getAllPosts() {
     }
   }
 
-  return results.filter(item => _validPost(item)).map(item => _buildPost(item))
+  return results
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getRankedPosts(pageSize = 10) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts
-      .filter(post => !!post.Rank)
+      .filter((post) => !!post.Rank)
       .sort((a, b) => {
         if (a.Rank > b.Rank) {
           return -1
@@ -137,14 +139,14 @@ export async function getRankedPosts(pageSize = 10) {
   const data = await client.databases.query(params)
 
   return data.results
-    .filter(item => _validPost(item))
-    .map(item => _buildPost(item))
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getPostsBefore(date: string, pageSize = 10) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.filter(post => post.Date < date).slice(0, pageSize)
+    return allPosts.filter((post) => post.Date < date).slice(0, pageSize)
   }
 
   const params = {
@@ -170,8 +172,8 @@ export async function getPostsBefore(date: string, pageSize = 10) {
   const data = await client.databases.query(params)
 
   return data.results
-    .filter(item => _validPost(item))
-    .map(item => _buildPost(item))
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getFirstPost() {
@@ -209,7 +211,7 @@ export async function getFirstPost() {
 export async function getPostBySlug(slug: string) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.find(post => post.Slug === slug)
+    return allPosts.find((post) => post.Slug === slug)
   }
 
   const data = await client.databases.query({
@@ -244,10 +246,10 @@ export async function getPostBySlug(slug: string) {
 
 export async function getPostsByTag(tag: string | undefined, pageSize = 100) {
   if (!tag) return []
-  
+
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.filter(post => post.Tags.includes(tag)).slice(0, pageSize)
+    return allPosts.filter((post) => post.Tags.includes(tag)).slice(0, pageSize)
   }
 
   const params = {
@@ -273,8 +275,8 @@ export async function getPostsByTag(tag: string | undefined, pageSize = 100) {
   const data = await client.databases.query(params)
 
   return data.results
-    .filter(item => _validPost(item))
-    .map(item => _buildPost(item))
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getPostsByTagBefore(
@@ -285,7 +287,7 @@ export async function getPostsByTagBefore(
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts
-      .filter(post => {
+      .filter((post) => {
         return post.Tags.includes(tag) && new Date(post.Date) < new Date(date)
       })
       .slice(0, pageSize)
@@ -320,14 +322,14 @@ export async function getPostsByTagBefore(
   const data = await client.databases.query(params)
 
   return data.results
-    .filter(item => _validPost(item))
-    .map(item => _buildPost(item))
+    .filter((item) => _validPost(item))
+    .map((item) => _buildPost(item))
 }
 
 export async function getFirstPostByTag(tag: string) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    const sameTagPosts = allPosts.filter(post => post.Tags.includes(tag))
+    const sameTagPosts = allPosts.filter((post) => post.Tags.includes(tag))
     return sameTagPosts[sameTagPosts.length - 1]
   }
 
@@ -374,7 +376,7 @@ export async function getAllBlocksByBlockId(blockId) {
   while (true) {
     const data = await client.blocks.children.list(params)
 
-    const blocks = data.results.map(item => _buildBlock(item))
+    const blocks = data.results.map((item) => _buildBlock(item))
 
     allBlocks = allBlocks.concat(blocks)
 
@@ -482,7 +484,10 @@ function _buildBlock(item) {
       if (item.image.type === 'external') {
         image.External = { Url: item.image.external.url }
       } else {
-        image.File = { Url: item.image.file.url, ExpiryTime: item.image.file.expiry_time }
+        image.File = {
+          Url: item.image.file.url,
+          ExpiryTime: item.image.file.expiry_time,
+        }
       }
 
       block.Image = image
@@ -598,16 +603,16 @@ async function _getTableRows(blockId: string): Promise<TableRow[]> {
   while (true) {
     const data = await client.blocks.children.list(params)
 
-    const blocks = data.results.map(item => {
+    const blocks = data.results.map((item) => {
       const tableRow: TableRow = {
         Id: item.id,
         Type: item.type,
         HasChildren: item.has_children,
-        Cells: []
+        Cells: [],
       }
 
       if (item.type === 'table_row') {
-        const cells: TableCell[] = item.table_row.cells.map(cell => {
+        const cells: TableCell[] = item.table_row.cells.map((cell) => {
           const tableCell: TableCell = {
             RichTexts: cell.map(_buildRichText),
           }
@@ -643,18 +648,20 @@ async function _getColumns(blockId: string): Promise<Column[]> {
   while (true) {
     const data = await client.blocks.children.list(params)
 
-    const blocks = await Promise.all(data.results.map(async item => {
-      const children = await getAllBlocksByBlockId(item.id)
+    const blocks = await Promise.all(
+      data.results.map(async (item) => {
+        const children = await getAllBlocksByBlockId(item.id)
 
-      const column: Column = {
-        Id: item.id,
-        Type: item.type,
-        HasChildren: item.has_children,
-        Children: children,
-      }
+        const column: Column = {
+          Id: item.id,
+          Type: item.type,
+          HasChildren: item.has_children,
+          Children: children,
+        }
 
-      return column
-    }))
+        return column
+      })
+    )
 
     columns = columns.concat(blocks)
 
@@ -689,22 +696,22 @@ async function _getBlock(blockId: string): Promise<Block> {
 export async function getAllTags() {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return [...new Set(allPosts.flatMap(post => post.Tags))].sort()
+    return [...new Set(allPosts.flatMap((post) => post.Tags))].sort()
   }
 
   const data = await client.databases.retrieve({
     database_id: DATABASE_ID,
   })
   return data.properties.Tags.multi_select.options
-    .map(option => option.name)
+    .map((option) => option.name)
     .sort()
 }
 
-export async function incrementLikes(post:Post) {
+export async function incrementLikes(post: Post) {
   const result = await client.pages.update({
     page_id: post.PageId,
     properties: {
-      'Like': (post.Like || 0) + 1,
+      Like: (post.Like || 0) + 1,
     },
   })
 
@@ -743,7 +750,7 @@ function _buildFilter(conditions = []) {
 function _uniqueConditions(conditions = []) {
   const properties = []
 
-  return conditions.filter(cond => {
+  return conditions.filter((cond) => {
     if (properties.includes(cond.property)) {
       return false
     }
@@ -769,7 +776,7 @@ function _buildPost(data) {
     Title: prop.Page.title[0].plain_text,
     Slug: prop.Slug.rich_text[0].plain_text,
     Date: prop.Date.date.start,
-    Tags: prop.Tags.multi_select.map(opt => opt.name),
+    Tags: prop.Tags.multi_select.map((opt) => opt.name),
     Excerpt:
       prop.Excerpt.rich_text.length > 0
         ? prop.Excerpt.rich_text[0].plain_text
@@ -777,7 +784,8 @@ function _buildPost(data) {
     OGImage:
       prop.OGImage.files.length > 0 ? prop.OGImage.files[0].file.url : null,
     Rank: prop.Rank.number,
-    Like: prop.Like != undefined ? prop.Like.number : 0,
+    // Like: prop.Like != undefined ? prop.Like.number : 0,
+    Like: prop.Like.number,
   }
 
   return post

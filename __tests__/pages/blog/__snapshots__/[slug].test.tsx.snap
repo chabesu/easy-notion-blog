@@ -335,7 +335,7 @@ exports[`RenderPost renders the page unchanged 1`] = `
             class="likeButton"
           >
             ♥ 
-            0
+            3
              
           </button>
           <span
