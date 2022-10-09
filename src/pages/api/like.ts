@@ -17,25 +17,21 @@ const ApiLike = async function (req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const post = await getPostBySlug(slug as string).then((post) => {
-    if (!post) throw new Error(`post not found. slug: ${slug}`)
-    return post
-  })
-  // .then((post) => incrementLikes(post))
-  // .then(() => {
-  //   res.statusCode = 200
-  //   res.end()
-  // })
-  // .catch((e) => {
-  //   console.log(e)
-  //   res.statusCode = 500
-  //   res.end()
-  // })
+  try {
+    const post = await getPostBySlug(slug as string)
+    if (!post) {
+      throw new Error(`post not found. slug: ${slug}`)
+    }
 
-  const like = await incrementLikes(post)
-  post.Like = like.Like
-  res.statusCode = 200
-  res.end()
+    await incrementLikes(post)
+
+    res.statusCode = 200
+    res.end()
+  } catch (e) {
+    console.log(e)
+    res.statusCode = 500
+    res.end()
+  }
 }
 
 export default ApiLike

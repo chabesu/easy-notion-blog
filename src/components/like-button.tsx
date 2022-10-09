@@ -10,7 +10,6 @@ type Props = {
 const LikeButton = (props: Props) => {
   const [active, setActive] = useState(false)
   const [like, setLike] = useState(props.post)
-  console.log(props)
 
   const handleClick = () => {
     if (!active) {
