@@ -1,11 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import {
-  getPostBySlug,
-  incrementLikes,
-} from '../../lib/notion/client'
+import { getPostBySlug, incrementLikes } from '../../lib/notion/client'
 
-const ApiLike = async function(req: NextApiRequest, res: NextApiResponse) {
+const ApiLike = async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'PUT') {
     res.statusCode = 400
     res.end()
@@ -20,21 +17,25 @@ const ApiLike = async function(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  getPostBySlug(slug as string)
-    .then(post => {
-      if (!post) throw new Error(`post not found. slug: ${slug}`)
-      return post
-    })
-    .then(post => incrementLikes(post))
-    .then(() => {
-      res.statusCode = 200
-      res.end()
-    })
-    .catch(e => {
-      console.log(e)
-      res.statusCode = 500
-      res.end()
-    })
+  const post = await getPostBySlug(slug as string).then((post) => {
+    if (!post) throw new Error(`post not found. slug: ${slug}`)
+    return post
+  })
+  // .then((post) => incrementLikes(post))
+  // .then(() => {
+  //   res.statusCode = 200
+  //   res.end()
+  // })
+  // .catch((e) => {
+  //   console.log(e)
+  //   res.statusCode = 500
+  //   res.end()
+  // })
+
+  const like = await incrementLikes(post)
+  post.Like = like.Like
+  res.statusCode = 200
+  res.end()
 }
 
 export default ApiLike
