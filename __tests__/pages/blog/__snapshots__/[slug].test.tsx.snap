@@ -338,11 +338,6 @@ exports[`RenderPost renders the page unchanged 1`] = `
             3
              
           </button>
-          <span
-            class="help"
-          >
-             ←1分ほど経過して再読み込みするとクリックしたいいね数が反映されます。修正予定。
-          </span>
         </footer>
       </div>
     </div>
