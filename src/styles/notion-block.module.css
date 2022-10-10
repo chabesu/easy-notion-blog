@@ -175,10 +175,11 @@
   line-height: 1.8rem;
   padding-inline-start: 1rem;
 }
-.toDo > div {
+
+/* .toDo > div {
 }
 .toDo > div > input {
-}
+} */
 
 .bookmark {
   display: flex;

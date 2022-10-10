@@ -306,23 +306,20 @@ const NumberedListItems = ({ blocks, level = 1 }) =>
       </li>
     ))
 
-<<<<<<< HEAD
-const SyncedBlock = ({ block }) => (
-  <NotionBlocks blocks={block.SyncedBlock.Children} />
-)
-=======
 const ToDoItems = ({ blocks }) =>
   blocks
     .filter((b: interfaces.Block) => b.Type === 'to_do')
     .map((listItem: interfaces.Block) => (
       <div key={`to-do-item-${listItem.Id}`}>
         <input type="checkbox" checked={listItem.ToDo.Checked} />
-        {listItem.ToDo.RichTexts.map((richText: interfaces.RichText, i: number) => (
-          <RichText
-            richText={richText}
-            key={`to-do-item-${listItem.Id}-${i}`}
-          />
-        ))}
+        {listItem.ToDo.RichTexts.map(
+          (richText: interfaces.RichText, i: number) => (
+            <RichText
+              richText={richText}
+              key={`to-do-item-${listItem.Id}-${i}`}
+            />
+          )
+        )}
         {listItem.HasChildren ? (
           <ul>
             <ToDoItems blocks={listItem.ToDo.Children} />
@@ -331,8 +328,9 @@ const ToDoItems = ({ blocks }) =>
       </div>
     ))
 
-const SyncedBlock = ({ block }) => <NotionBlocks blocks={block.SyncedBlock.Children} />
->>>>>>> 6708bfd (Display ToDo)
+const SyncedBlock = ({ block }) => (
+  <NotionBlocks blocks={block.SyncedBlock.Children} />
+)
 
 const Toggle = ({ block }) => (
   <details className={styles.toggle}>
@@ -380,7 +378,11 @@ const NotionBlock = ({ block }) => {
     return <Table block={block} />
   } else if (block.Type === 'column_list') {
     return <ColumnList block={block} />
-  } else if (block.Type === 'bulleted_list' || block.Type === 'numbered_list' || block.Type === 'to_do') {
+  } else if (
+    block.Type === 'bulleted_list' ||
+    block.Type === 'numbered_list' ||
+    block.Type === 'to_do'
+  ) {
     return <List block={block} />
   } else if (block.Type === 'synced_block') {
     return <SyncedBlock block={block} />
@@ -405,7 +407,8 @@ const wrapListItems = (blocks: Array<interfaces.Block>) =>
     const isNumberedListItem = block.Type === 'numbered_list_item'
     const isToDo = block.Type === 'to_do'
 
-    if (!isBulletedListItem && !isNumberedListItem && !isToDo) return arr.concat(block)
+    if (!isBulletedListItem && !isNumberedListItem && !isToDo)
+      return arr.concat(block)
 
     let listType = ''
     if (isBulletedListItem) {
