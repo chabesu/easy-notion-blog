@@ -134,6 +134,7 @@ const TableOfContents = ({ block, blocks }) => {
   )
   return (
     <div className={styles.tableOfContents}>
+      <div className={styles.tableOfContentsHeading}>▼ 目次</div>
       {headings.map((headingBlock: interfaces.Block) => {
         const heading =
           headingBlock.Heading1 ||

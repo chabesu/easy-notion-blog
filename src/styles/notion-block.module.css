@@ -305,7 +305,11 @@
   height: 100%;
 }
 
-.tableOfContents {}
+.tableOfContents {
+  background-color: #f7f9f9;
+  padding: 16px;
+  margin: 36px 0;
+}
 
 .tableOfContents>a {
   display: block;
@@ -324,4 +328,10 @@
 
 .tableOfContents>a.indent-2 {
   padding-left: 3.0rem;
+}
+
+.tableOfContentsHeading {
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #787774;
 }
