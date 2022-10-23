@@ -22,7 +22,7 @@ import { RichText } from '../../lib/notion/interfaces'
 const Mermaid = dynamic(() => import('./mermaid'))
 
 const Code = ({ block }) => {
-  const code = block.Code.Text.map((richText: RichText) => richText.Text.Content).join('')
+  const code = block.Code.RichTexts.map((richText: RichText) => richText.Text.Content).join('')
   const language = block.Code.Language.toLowerCase()
   const grammer = Prism.languages[language.toLowerCase()] || Prism.languages.javascript
 
