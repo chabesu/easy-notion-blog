@@ -31,204 +31,214 @@ exports[`RenderPost renders the page unchanged 1`] = `
           あのイーハトーヴォのすきとおった風
         </h3>
         <div
-          class="postBody"
+          class="content"
         >
-          <a
-            href="#Heading 1"
-            id="Heading 1"
+          <div
+            class="postBody"
           >
-            <h4>
-              Heading 1
-            </h4>
-          </a>
-          <a
-            href="#Heading 2"
-            id="Heading 2"
-          >
-            <h5>
-              Heading 2
-            </h5>
-          </a>
-          <a
-            href="#Heading 3"
-            id="Heading 3"
-          >
-            <h6>
-              Heading 3
-            </h6>
-          </a>
-          <p>
-            Paragraph
-          </p>
-          <p>
-            <b>
-              bold
-            </b>
-          </p>
-          <p>
-            <i>
-              italic
-            </i>
-          </p>
-          <p>
-            <u>
-              Underline
-            </u>
-          </p>
-          <p>
-            <s>
-              Strike
-            </s>
-          </p>
-          <p>
             <a
-              href="https://github.com/otoyo/easy-notion-blog"
+              href="#Heading 1"
+              id="Heading 1"
             >
-              link
-            </a>
-          </p>
-          <p>
-            <code>
-              code
-            </code>
-          </p>
-          <p />
-          <ul>
-            <li>
-              Bulleted List
-            </li>
-            <li>
-              Uni
-            </li>
-            <li>
-              Tako
-              <ul>
-                <li>
-                  aaa
-                </li>
-                <li>
-                  bbb
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <p />
-          <ol>
-            <li>
-              Numbered List
-            </li>
-            <li>
-              Kani
-            </li>
-            <li>
-              Ika
-              <ol
-                type="a"
+              <h4
+                id="Heading 1"
               >
-                <li>
-                  111
-                </li>
-                <li>
-                  222
-                </li>
-              </ol>
-            </li>
-          </ol>
-          <p />
-          <p>
-            Divider
-          </p>
-          <hr
-            class="divider"
-          />
-          <p />
-          <div
-            class="callout"
-          >
-            <div>
-              ℹ️
-            </div>
-            <div>
-              Callout
-            </div>
-          </div>
-          <p />
-          <p />
-          <blockquote>
-            Quote Block
-          </blockquote>
-          <p />
-          <div
-            class="table"
-          >
-            <table>
-              <tbody>
-                <tr>
-                  <th>
-                    Simple
-                  </th>
-                  <th>
-                    Table
-                  </th>
-                </tr>
-                <tr>
-                  <td>
-                    1
-                  </td>
-                  <td>
-                    Tako
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    2
-                  </td>
-                  <td>
-                    Ika
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    3
-                  </td>
-                  <td>
-                    Uni
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p />
-          <figure
-            class="image"
-          >
-            <div>
-              <img
-                alt="画像が読み込まれない場合はページを更新してみてください。"
-                src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5d04be89-54da-482a-9391-efd465f74082/profile.png"
-              />
-            </div>
-            <figcaption
-              class="caption"
+                Heading 1
+              </h4>
+            </a>
+            <a
+              href="#Heading 2"
+              id="Heading 2"
             >
-              This is image caption.
-            </figcaption>
-          </figure>
-          <figure
-            class="image"
-          >
-            <div>
-              <img
-                alt="画像が読み込まれない場合はページを更新してみてください。"
-                src="https://images.unsplash.com/photo-1512070679279-8988d32161be?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb"
-              />
-            </div>
-            <figcaption
-              class="caption"
+              <h5
+                id="Heading 2"
+              >
+                Heading 2
+              </h5>
+            </a>
+            <a
+              href="#Heading 3"
+              id="Heading 3"
             >
-              External images from Unsplash
-            </figcaption>
-          </figure>
+              <h6
+                id="Heading 3"
+              >
+                Heading 3
+              </h6>
+            </a>
+            <p>
+              Paragraph
+            </p>
+            <p>
+              <b>
+                bold
+              </b>
+            </p>
+            <p>
+              <i>
+                italic
+              </i>
+            </p>
+            <p>
+              <u>
+                Underline
+              </u>
+            </p>
+            <p>
+              <s>
+                Strike
+              </s>
+            </p>
+            <p>
+              <a
+                href="https://github.com/otoyo/easy-notion-blog"
+              >
+                link
+              </a>
+            </p>
+            <p>
+              <code>
+                code
+              </code>
+            </p>
+            <p />
+            <ul>
+              <li>
+                Bulleted List
+              </li>
+              <li>
+                Uni
+              </li>
+              <li>
+                Tako
+                <ul>
+                  <li>
+                    aaa
+                  </li>
+                  <li>
+                    bbb
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p />
+            <ol>
+              <li>
+                Numbered List
+              </li>
+              <li>
+                Kani
+              </li>
+              <li>
+                Ika
+                <ol
+                  type="a"
+                >
+                  <li>
+                    111
+                  </li>
+                  <li>
+                    222
+                  </li>
+                </ol>
+              </li>
+            </ol>
+            <p />
+            <p>
+              Divider
+            </p>
+            <hr
+              class="divider"
+            />
+            <p />
+            <div
+              class="callout"
+            >
+              <div>
+                ℹ️
+              </div>
+              <div>
+                Callout
+              </div>
+            </div>
+            <p />
+            <p />
+            <blockquote>
+              Quote Block
+            </blockquote>
+            <p />
+            <div
+              class="table"
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <th>
+                      Simple
+                    </th>
+                    <th>
+                      Table
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      1
+                    </td>
+                    <td>
+                      Tako
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      2
+                    </td>
+                    <td>
+                      Ika
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      3
+                    </td>
+                    <td>
+                      Uni
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p />
+            <figure
+              class="image"
+            >
+              <div>
+                <img
+                  alt="画像が読み込まれない場合はページを更新してみてください。"
+                  src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5d04be89-54da-482a-9391-efd465f74082/profile.png"
+                />
+              </div>
+              <figcaption
+                class="caption"
+              >
+                This is image caption.
+              </figcaption>
+            </figure>
+            <figure
+              class="image"
+            >
+              <div>
+                <img
+                  alt="画像が読み込まれない場合はページを更新してみてください。"
+                  src="https://images.unsplash.com/photo-1512070679279-8988d32161be?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb"
+                />
+              </div>
+              <figcaption
+                class="caption"
+              >
+                External images from Unsplash
+              </figcaption>
+            </figure>
+          </div>
         </div>
         <footer>
           <ul
@@ -442,6 +452,57 @@ exports[`RenderPost renders the page unchanged 1`] = `
             </a>
           </li>
         </ul>
+      </div>
+      <div
+        class="tocbox"
+      >
+        <div
+          class="js-toc"
+          style="display: block;"
+        >
+          <ol
+            class="toc-list "
+          >
+            <li
+              class="toc-list-item"
+            >
+              <a
+                class="toc-link node-name--H4 "
+                href="#Heading 1"
+              >
+                Heading 1
+              </a>
+              <ol
+                class="toc-list  is-collapsible"
+              >
+                <li
+                  class="toc-list-item"
+                >
+                  <a
+                    class="toc-link node-name--H5 "
+                    href="#Heading 2"
+                  >
+                    Heading 2
+                  </a>
+                  <ol
+                    class="toc-list  is-collapsible"
+                  >
+                    <li
+                      class="toc-list-item is-active-li"
+                    >
+                      <a
+                        class="toc-link node-name--H6  is-active-link"
+                        href="#Heading 3"
+                      >
+                        Heading 3
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
