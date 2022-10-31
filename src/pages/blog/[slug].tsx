@@ -17,6 +17,7 @@ import {
 } from '../../components/blog-parts'
 import SocialButtons from '../../components/social-buttons'
 import LikeButton from '../../components/like-button'
+import Toc from '../../components/toc'
 import styles from '../../styles/blog.module.css'
 import { getBlogLink } from '../../lib/blog-helpers'
 import {
@@ -164,6 +165,7 @@ const RenderPost = ({
         <BlogPostLink heading="Recommended" posts={rankedPosts} />
         <BlogPostLink heading="Latest posts" posts={recentPosts} />
         <BlogTagLink heading="Categories" tags={tags} />
+        <Toc />
       </div>
     </div>
   )

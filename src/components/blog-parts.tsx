@@ -65,8 +65,10 @@ export const PostExcerpt = ({ post }) => (
 )
 
 export const PostBody = ({ blocks }) => (
-  <div className={styles.postBody}>
-    <NotionBlocks blocks={blocks} />
+  <div className="content">
+    <div className={styles.postBody}>
+      <NotionBlocks blocks={blocks} />
+    </div>
   </div>
 )
 

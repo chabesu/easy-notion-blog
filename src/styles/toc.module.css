@@ -1,0 +1,20 @@
+.tocbox {
+    position: sticky;
+    margin-top: 50px;
+    top: 30px;
+}
+
+.tocbox :global .toc-list {
+    padding-left: 1.5rem;
+    padding-top: 0.1rem;
+    list-style-type: none;
+}
+
+.tocbox :global .toc-link {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.tocbox :global .is-active-link {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 700;
+}
