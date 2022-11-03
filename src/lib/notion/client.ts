@@ -40,7 +40,7 @@ const client = new Client({
   auth: NOTION_API_SECRET,
 })
 
-export async function getPosts(pageSize = 10) {
+export async function getPosts(pageSize = 10): Promise<Post[]> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts.slice(0, pageSize)
@@ -68,7 +68,7 @@ export async function getPosts(pageSize = 10) {
     .map((pageObject) => _buildPost(pageObject))
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<Post[]> {
   let results = []
 
   if (blogIndexCache.exists()) {
@@ -108,7 +108,7 @@ export async function getAllPosts() {
     .map((pageObject) => _buildPost(pageObject))
 }
 
-export async function getRankedPosts(pageSize = 10) {
+export async function getRankedPosts(pageSize = 10): Promise<Post[]> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts
@@ -152,7 +152,10 @@ export async function getRankedPosts(pageSize = 10) {
     .map((pageObject) => _buildPost(pageObject))
 }
 
-export async function getPostsBefore(date: string, pageSize = 10) {
+export async function getPostsBefore(
+  date: string,
+  pageSize = 10
+): Promise<Post[]> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts.filter((post) => post.Date < date).slice(0, pageSize)
@@ -187,7 +190,7 @@ export async function getPostsBefore(date: string, pageSize = 10) {
     .map((pageObject) => _buildPost(pageObject))
 }
 
-export async function getFirstPost() {
+export async function getFirstPost(): Promise<Post | null> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts[allPosts.length - 1]
@@ -221,7 +224,7 @@ export async function getFirstPost() {
   return _buildPost(res.results[0])
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts.find((post) => post.Slug === slug)
@@ -257,7 +260,10 @@ export async function getPostBySlug(slug: string) {
   return _buildPost(res.results[0])
 }
 
-export async function getPostsByTag(tag: string | undefined, pageSize = 100) {
+export async function getPostsByTag(
+  tag: string | undefined,
+  pageSize = 100
+): Promise<Post[]> {
   if (!tag) return []
 
   if (blogIndexCache.exists()) {
@@ -298,7 +304,7 @@ export async function getPostsByTagBefore(
   tag: string,
   date: string,
   pageSize = 100
-) {
+): Promise<Post[]> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts
@@ -343,7 +349,7 @@ export async function getPostsByTagBefore(
     .map((pageObject) => _buildPost(pageObject))
 }
 
-export async function getFirstPostByTag(tag: string) {
+export async function getFirstPostByTag(tag: string): Promise<Post | null> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     const sameTagPosts = allPosts.filter((post) => post.Tags.includes(tag))
@@ -385,7 +391,7 @@ export async function getFirstPostByTag(tag: string) {
   return _buildPost(res.results[0])
 }
 
-export async function getAllBlocksByBlockId(blockId) {
+export async function getAllBlocksByBlockId(blockId: string): Promise<Block[]> {
   let allBlocks: Block[] = []
 
   const params = {
@@ -430,7 +436,7 @@ export async function getAllBlocksByBlockId(blockId) {
   return allBlocks
 }
 
-function _buildBlock(blockObject: responses.BlockObject) {
+function _buildBlock(blockObject: responses.BlockObject): Block {
   const block: Block = {
     Id: blockObject.id,
     Type: blockObject.type,
@@ -736,7 +742,7 @@ async function _getBlock(blockId: string): Promise<Block> {
   return _buildBlock(res)
 }
 
-export async function getAllTags() {
+export async function getAllTags(): Promise<string[]> {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return [...new Set(allPosts.flatMap((post) => post.Tags))].sort()
@@ -803,7 +809,7 @@ function _uniqueConditions(conditions = []) {
   })
 }
 
-function _validPageObject(pageObject: responses.PageObject) {
+function _validPageObject(pageObject: responses.PageObject): boolean {
   const prop = pageObject.properties
   return (
     prop.Page.title.length > 0 &&
@@ -812,7 +818,7 @@ function _validPageObject(pageObject: responses.PageObject) {
   )
 }
 
-function _buildPost(pageObject: responses.PageObject) {
+function _buildPost(pageObject: responses.PageObject): Post {
   const prop = pageObject.properties
 
   const post: Post = {
@@ -835,7 +841,7 @@ function _buildPost(pageObject: responses.PageObject) {
   return post
 }
 
-function _buildRichText(richTextObject: responses.RichTextObject) {
+function _buildRichText(richTextObject: responses.RichTextObject): RichText {
   const annotation: Annotation = {
     Bold: richTextObject.annotations.bold,
     Italic: richTextObject.annotations.italic,
