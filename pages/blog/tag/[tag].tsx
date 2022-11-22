@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../../lib/notion/server-constants'
+import { NUMBER_OF_POSTS_PER_PAGE } from '../../../app/server-constants'
 import DocumentHead from '../../../components/document-head'
 import {
   BlogPostLink,
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   const tags = await getAllTags()
 
   return {
-    paths: tags.map(tag => getTagLink(tag)),
+    paths: tags.map((tag) => getTagLink(tag)),
     fallback: 'blocking',
   }
 }

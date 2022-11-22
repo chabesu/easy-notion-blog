@@ -2,7 +2,7 @@ import React from 'react'
 import useSWR from 'swr'
 import axios from 'axios'
 
-import { NEXT_PUBLIC_URL } from '../../lib/notion/server-constants'
+import { NEXT_PUBLIC_URL } from '../../app/server-constants'
 import DocumentHead from '../../components/document-head'
 import { Block } from '../../lib/notion/interfaces'
 import {
@@ -129,7 +129,10 @@ const RenderPost = ({
       <DocumentHead
         title={post.Title}
         description={post.Excerpt}
-        urlOgImage={NEXT_PUBLIC_URL && new URL(`/api/og-image/${post.Slug}`, NEXT_PUBLIC_URL).toString()}
+        urlOgImage={
+          NEXT_PUBLIC_URL &&
+          new URL(`/api/og-image/${post.Slug}`, NEXT_PUBLIC_URL).toString()
+        }
       />
 
       <div className={styles.mainContent}>
