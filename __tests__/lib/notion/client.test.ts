@@ -4,9 +4,9 @@ import {
   getPosts,
   getAllBlocksByBlockId,
   getAllTags,
-} from '../../../src/lib/notion/client'
+} from '../../../lib/notion/client'
 
-import { Post, Block, Annotation } from '../../../src/lib/notion/interfaces'
+import { Post, Block, Annotation } from '../../../lib/notion/interfaces'
 
 describe('getPosts', () => {
   const expected: Post[] = [
@@ -87,14 +87,16 @@ describe('getAllBlocksByBlockId', () => {
             Equation: {
               Expression: 'e=mc^2',
             },
-          }
+          },
         ],
         Color: 'default',
       },
     }
 
     const blocks = await getAllBlocksByBlockId(pageBlockId)
-    const paragraph = blocks.filter((block: Block) => block.Type === 'paragraph')[1]
+    const paragraph = blocks.filter(
+      (block: Block) => block.Type === 'paragraph'
+    )[1]
     expect(paragraph).toMatchObject(expected)
   })
 
