@@ -1,21 +1,25 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
-
-export const SITE_TITLE = 'チャベログ'
-export const SITE_DESCRIPTION =
-  'easy-notion-blogを使用したNotion Blogです。easy-notion-blogのこと、プログラミングのことを書いています。'
+import {
+  NEXT_PUBLIC_URL,
+  NEXT_PUBLIC_SITE_TITLE,
+  NEXT_PUBLIC_SITE_DESCRIPTION,
+} from '../lib/notion/server-constants'
 
 const DocumentHead = ({ title = '', description = '', urlOgImage = '' }) => {
   const { asPath } = useRouter()
 
   return (
     <Head>
-      <title>{title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}</title>
+      <title>
+        {title
+          ? `${title} - ${NEXT_PUBLIC_SITE_TITLE}`
+          : NEXT_PUBLIC_SITE_TITLE}
+      </title>
       <meta
         name="description"
-        content={description ? description : SITE_DESCRIPTION}
+        content={description ? description : NEXT_PUBLIC_SITE_DESCRIPTION}
       />
       {NEXT_PUBLIC_URL ? (
         <meta
@@ -23,10 +27,13 @@ const DocumentHead = ({ title = '', description = '', urlOgImage = '' }) => {
           content={new URL(asPath, NEXT_PUBLIC_URL).toString()}
         />
       ) : null}
-      <meta property="og:title" content={title ? title : SITE_TITLE} />
+      <meta
+        property="og:title"
+        content={title ? title : NEXT_PUBLIC_SITE_TITLE}
+      />
       <meta
         property="og:description"
-        content={description ? description : SITE_DESCRIPTION}
+        content={description ? description : NEXT_PUBLIC_SITE_DESCRIPTION}
       />
       {urlOgImage ? (
         <meta property="og:image" content={urlOgImage} />
