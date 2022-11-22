@@ -1,4 +1,4 @@
-jest.mock('../../../src/lib/notion/blog-index-cache')
+jest.mock('../../../lib/notion/blog-index-cache')
 
 import {
   getPosts,
