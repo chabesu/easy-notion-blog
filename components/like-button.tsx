@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import axios from 'axios'
 import styles from '../styles/like-button.module.css'
