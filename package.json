@@ -38,8 +38,8 @@
     "tocbot": "^4.18.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "@types/node": "^17.0.35",
     "@types/react": "17.0.39",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
