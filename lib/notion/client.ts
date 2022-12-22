@@ -1,4 +1,4 @@
-import { NOTION_API_SECRET, DATABASE_ID } from './server-constants'
+import { NOTION_API_SECRET, DATABASE_ID } from '../../app/server-constants'
 import * as responses from './responses'
 import {
   Post,
@@ -436,6 +436,14 @@ export async function getAllBlocksByBlockId(blockId: string): Promise<Block[]> {
   return allBlocks
 }
 
+export async function getBlock(blockId: string): Promise<Block> {
+  const res: responses.RetrieveBlockResponse = await client.blocks.retrieve({
+    block_id: blockId,
+  })
+
+  return _buildBlock(res)
+}
+
 function _buildBlock(blockObject: responses.BlockObject): Block {
   const block: Block = {
     Id: blockObject.id,
@@ -727,19 +735,11 @@ async function _getColumns(blockId: string): Promise<Column[]> {
 async function _getSyncedBlockChildren(block: Block): Promise<Block[]> {
   let originalBlock: Block = block
   if (block.SyncedBlock.SyncedFrom && block.SyncedBlock.SyncedFrom.BlockId) {
-    originalBlock = await _getBlock(block.SyncedBlock.SyncedFrom.BlockId)
+    originalBlock = await getBlock(block.SyncedBlock.SyncedFrom.BlockId)
   }
 
   const children = await getAllBlocksByBlockId(originalBlock.Id)
   return children
-}
-
-async function _getBlock(blockId: string): Promise<Block> {
-  const res: responses.RetrieveBlockResponse = await client.blocks.retrieve({
-    block_id: blockId,
-  })
-
-  return _buildBlock(res)
 }
 
 export async function getAllTags(): Promise<string[]> {
@@ -755,21 +755,6 @@ export async function getAllTags(): Promise<string[]> {
   return res.properties.Tags.multi_select.options
     .map((option) => option.name)
     .sort()
-}
-
-export async function incrementLikes(post: Post) {
-  const result = await client.pages.update({
-    page_id: post.PageId,
-    properties: {
-      Like: (post.Like || 0) + 1,
-    },
-  })
-
-  if (!result) {
-    return null
-  }
-
-  return _buildPost(result)
 }
 
 function _buildFilter(conditions = []) {
@@ -834,8 +819,6 @@ function _buildPost(pageObject: responses.PageObject): Post {
     OGImage:
       prop.OGImage.files.length > 0 ? prop.OGImage.files[0].file.url : null,
     Rank: prop.Rank.number,
-    // Like: prop.Like != undefined ? prop.Like.number : 0,
-    Like: prop.Like.number,
   }
 
   return post

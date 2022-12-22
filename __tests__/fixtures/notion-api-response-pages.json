@@ -72,11 +72,6 @@
           "type": "number",
           "number": 3
         },
-        "Like": {
-          "id": "Ai%60A",
-          "type": "number",
-          "number": 3
-        },
         "Slug": {
           "id": "Ai%60L",
           "type": "rich_text",
